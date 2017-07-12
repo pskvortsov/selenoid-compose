@@ -1,9 +1,10 @@
-version: "3"
+version: "2"
 services:
   selenoid:
     container_name: selenoid
     network_mode: bridge
-    image: "aerokube/selenoid:1.3.0"
+    image: "aerokube/selenoid:1.3.2"
+    command: -cpu 1.5 -limit 8
     ports:
       - 4444:4444
     volumes:
@@ -13,8 +14,8 @@ services:
   selenoid-ui:
     container_name: selenoid-ui
     network_mode: bridge
-    image: "aerokube/selenoid-ui:1.3.0"
-    command: -selenoid-uri 'http://selenoid:4444'
+    image: "aerokube/selenoid-ui:1.3.1"
+    command: -selenoid-uri http://selenoid:4444
     ports:
       - 8080:8080
     links:
